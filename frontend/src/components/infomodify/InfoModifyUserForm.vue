@@ -1,11 +1,13 @@
 <template>
   <div>
     <button @click="clearForm"> 폼 비우기 </button>
+    <hr>
     <CommonDynamicFields
       v-for="(item,index) in userInfo"
       :key="index"
       :formData="item"
     />
+    <hr>
   </div>
 </template>
 
@@ -32,6 +34,11 @@ export default {
           value: '개발자',
           template: 'infomodify/form/FormDefault'
         },
+        user_changePassword: {
+          name: 'user_changePassword',
+          title: '비밀번호 변경',
+          template: 'infomodify/form/FormChangePassword'
+        },
         user_Address: {
           name: 'user_address',
           title: '주소',
@@ -51,7 +58,7 @@ export default {
             }
           },
           template: 'infomodify/form/FormAddress'
-        }
+        },
       }
     }
   },

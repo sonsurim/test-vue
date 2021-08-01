@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p> (tr)  </p>
-    <p>th: {{ title }}</p>
+    <h3>{{ title }}</h3>
     <p>
       <input
         type="text"
@@ -20,10 +19,6 @@
         v-model="address2"
       />
     </p>
-    <p> (/tr) </p>
-    <hr>
-      Form Address
-    <hr>
   </div>
 </template>
 
