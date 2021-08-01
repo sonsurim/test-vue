@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import emitter from '../../utils/emmiter';
 import CommonDynamicFields from '../common/CommonDynamicFiedls.vue'
 
 export default {
@@ -30,13 +31,33 @@ export default {
           title: '직업',
           value: '개발자',
           template: 'infomodify/form/FormDefault'
+        },
+        user_Address: {
+          name: 'user_address',
+          title: '주소',
+          value: '',
+          child: {
+            zipCode: {
+              name: 'zipCode',
+              value: '07123'
+            },
+            address1: {
+              name: 'address1',
+              value: '서울시 둥땅구 동장이'
+            },
+            address2: {
+              name: 'address2',
+              value: '몇동 몇호 입니다'
+            }
+          },
+          template: 'infomodify/form/FormAddress'
         }
       }
     }
   },
   methods: {
     clearForm() {
-      console.log(this.$.components);
+      emitter.emit('update:clear-form');
     }
   }
 }

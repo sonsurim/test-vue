@@ -18,13 +18,21 @@ import infoModifyMixins from '../../../mixins/infoModifyMixins';
 
 export default {
   mixins: [ infoModifyMixins ],
-  data() {
-    return {
-      vmodelValue: ''
+  computed: {
+    vmodelValue: {
+      get () {
+        return this.$store.state.userInfo[this.formData.name]
+      },
+      set (value) {
+        return this.$store.commit('UPDATE_INFO', {
+          key: this.formData.name,
+          value
+        })
+      }
     }
   },
   created() {
-    this.vmodelValue = this.formData.value ? this.formData.value : ''
+    this.vmodelValue = this.formData.value ? this.formData.value : '';
   }
 }
 </script>
