@@ -2,35 +2,21 @@
   <div>
     <h3>{{ title }}</h3>
     <p>
-      <input
-        type="text"
-        v-model="vmodelValue"
+      <InfoModifyInput
+        :name="formData.name"
+        :value="formData.value"
       />
     </p>
   </div>
 </template>
 
 <script>
+import InfoModifyInput from '../InfoModifyInput';
 import infoModifyMixins from '../../../mixins/infoModifyMixins';
 
 export default {
+  components: { InfoModifyInput },
   mixins: [ infoModifyMixins ],
-  computed: {
-    vmodelValue: {
-      get () {
-        return this.$store.state.userInfo[this.formData.name]
-      },
-      set (value) {
-        return this.$store.commit('UPDATE_INFO', {
-          key: this.formData.name,
-          value
-        })
-      }
-    }
-  },
-  created() {
-    this.vmodelValue = this.formData.value ? this.formData.value : '';
-  }
 }
 </script>
 

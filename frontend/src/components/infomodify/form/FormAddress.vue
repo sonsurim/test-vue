@@ -2,65 +2,46 @@
   <div>
     <h3>{{ title }}</h3>
     <p>
-      <input
-        type="text"
-        v-model="zipCode"
+      <InfoModifyInput
+        :name="zipCode.name"
+        :value="zipCode.value"
       />
     </p>
     <p>
-      <input
-        type="text"
-        v-model="address1"
+      <InfoModifyInput
+        :name="address1.name"
+        :value="address1.value"
       />
     </p>
     <p>
-      <input
-        type="text"
-        v-model="address2"
+      <InfoModifyInput
+        :name="address2.name"
+        :value="address2.value"
       />
     </p>
   </div>
 </template>
 
 <script>
+import InfoModifyInput from '../InfoModifyInput';
 import infoModifyMixins from '../../../mixins/infoModifyMixins';
 
 export default {
+  components: { InfoModifyInput },
   mixins: [ infoModifyMixins ],
   computed: {
-    zipCode: {
-      get () {
-        return this.$store.state.userInfo['zipCode']
-      },
-      set (value) {
-        return this.$store.commit('UPDATE_INFO', {
-          key: 'zipCode',
-          value
-        })
-      }
+    zipCode() {
+      return this.formData.child['zipCode']
     },
-    address1: {
-      get () {
-        return this.$store.state.userInfo['address1']
-      },
-      set (value) {
-        return this.$store.commit('UPDATE_INFO', {
-          key: 'address1',
-          value
-        })
-      }
+    address1() {
+      return this.formData.child['address1']
     },
-    address2: {
-      get () {
-        return this.$store.state.userInfo['address2']
-      },
-      set (value) {
-        return this.$store.commit('UPDATE_INFO', {
-          key: 'address2',
-          value
-        })
-      }
+    address2() {
+      return this.formData.child['address2']
     }
+  },
+  created() {
+    console.log(this.formData.child);
   }
 }
 </script>
